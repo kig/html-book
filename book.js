@@ -32,12 +32,41 @@ for (var i = 0; i < books.length; i++) {
 })();
 
 (function() {
-var sx,sy,down,rot=0;
+var px,py,sx,sy,down,rot=0,rotX=0,rotY=0,cancel;
 var cardPage = document.querySelector('#myBook > div');
 var pages = document.querySelectorAll('#myBook > div > div');
 var currentPage = 0;
 
 window.onmousedown = function(ev) {
+  down = true;
+  cancel = false;
+  sx = px = ev.clientX;
+  sy = py = ev.clientY;
+  ev.preventDefault();
+};
+
+window.onmouseup = function(ev) {
+  down = false;
+};
+
+window.onmousemove = function(ev) {
+  if (down) {
+    var x = ev.clientX;
+    var y = ev.clientY;
+    var dx = x-px;
+    var dy = y-py;
+    px = x;
+    py = y;
+    cancel = cancel || ((x-sx)*(x-sx)+(y-sy)*(y-sy) > 25);
+    rotX -= dy * 1;
+    rotY -= dx * 1;
+    setTransform(cardPage, 'rotateX('+rotX+'deg) rotateY('+rotY+'deg)');
+    ev.preventDefault();
+  }
+};
+
+window.onclick = function(ev) {
+  if (cancel) return;
   if (ev.clientX < 600) {
     previousPage();
   } else {
@@ -63,25 +92,14 @@ return;
 
 /* deprecated draggable page-turner
 
-window.onmousedown = function(ev) {
-  down = true;
-  sx = ev.clientX;
-  sy = ev.clientY;
-  ev.preventDefault();
-};
-
-window.onmouseup = function(ev) {
-  down = false;
-};
-
 window.onmousemove = function(ev) {
   if (down) {
     var x = ev.clientX;
     var y = ev.clientY;
-    var dx = x-sx;
-    var dy = y-sy;
-    sx = x;
-    sy = y;
+    var dx = x-px;
+    var dy = y-py;
+    px = x;
+    py = y;
     rot = Math.min(0, Math.max(-150, rot+dx*2));
     var p = ((rot / -150)) * 2 * currentPage + -currentPage;
     setTransform(pages[currentPage], 'translate3d(0px,0px,'+p+'px) rotateY('+ rot + 'deg)');
