@@ -7,8 +7,12 @@
       html {
         width: 100%;
         height: 100%;
+        font-family: Times;
+        font-size: 16px;
       }
+
       body {
+        cursor: pointer;
         width: 100%;
         height: 100%;
         background: #012717; /* Old browsers */
@@ -24,22 +28,45 @@
       }
 
       #myBook {
-        cursor: move;
         left: 600px;
         top: 50px;
         -webkit-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        -moz-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        -ms-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        -o-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
         text-align: center;
         -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
         position: absolute;
       }
 
       #myBook .book > div:first-child {
-        -webkit-transform: rotateY(-30deg);
+        -webkit-transform: rotateY(-150deg);
+        -moz-transform: rotateY(-150deg);
+        -ms-transform: rotateY(-150deg);
+        -o-transform: rotateY(-150deg);
+        transform: rotateY(-150deg);
       }
 
       .book, .book > div {
         -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
         position: absolute;
+      }
+
+      .book > div {
+        -webkit-transition: 1s ease-in-out;
+        -moz-transition: 1s ease-in-out;
+        -ms-transition: 1s ease-in-out;
+        -o-transition: 1s ease-in-out;
+        transition: 1s ease-in-out;
       }
 
       /* Front of a page */
@@ -57,30 +84,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
         position: absolute;
         overflow: hidden;
         -webkit-transform: translate3d(0px, 0px, 0.01px);
+        -moz-transform: translate3d(0px, 0px, 0.01px);
+        -ms-transform: translate3d(0px, 0px, 0.01px);
+        -o-transform: translate3d(0px, 0px, 0.01px);
+        transform: translate3d(0px, 0px, 0.01px);
         padding: 30px;
         padding-left: 40px;
         padding-bottom: 80px;
+        border-left: 2px solid #000;
       }
 
       /* Back of a page */
       .book > div > div:last-child {
         background-color: white;
-background: #ffffff; /* Old browsers */
-background: -moz-linear-gradient(-45deg,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
-background: linear-gradient(135deg,  #ffffff 0%,#e5e5e5 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(-45deg,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+        background: linear-gradient(135deg,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
         width: 400px;
         height: 600px;
         position: absolute;
-        -webkit-transform: rotateY(180deg);;
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
         overflow: hidden;
         padding: 30px;
         padding-right: 40px;
         padding-bottom: 80px;
+        border-right: 2px solid #000;
       }
 
       /* covers */
@@ -93,10 +130,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
         background: -ms-linear-gradient(-45deg,  #8C9CCC 0%,#080f40 100%); /* IE10+ */
         background: linear-gradient(135deg,  #8C9CCC 0%,#080f40 100%); /* W3C */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8C9CCC', endColorstr='#080f40',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-        color: gold;
-        border: 8px solid #000;
-        margin-left: -8px;
-        margin-top: -8px;
+        color: #000;
+        border: 2px solid #000;
+        margin-left: -1px;
+        margin-top: -1px;
       }
 
       h1 {
@@ -106,6 +143,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
       #book-content {
         -webkit-flow-into: book-text-flow;
+        -moz-flow-into: book-text-flow;
+        -ms-flow-into: book-text-flow;
+        -o-flow-into: book-text-flow;
+        flow-into: book-text-flow;
       }
       #book-content p {
         text-align: left;
@@ -113,6 +154,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
       .book-pages {
         -webkit-flow-from: book-text-flow;
+        -moz-flow-from: book-text-flow;
+        -ms-flow-from: book-text-flow;
+        -o-flow-from: book-text-flow;
+        flow-from: book-text-flow;
       }
     </style>
 
@@ -123,7 +168,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 <h2>
     A DESCENT INTO THE MAELSTRÖM.
 </h2>
-<p style="font-family:monospace;">
+<p style="font-family:monospace;font-size:small;">
   The ways of God in Nature, as in Providence, are not as our
   ways;  nor are the models that we frame any way commensurate to the
   vastness, profundity, and unsearchableness of His works, which have
