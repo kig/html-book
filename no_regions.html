@@ -1,0 +1,622 @@
+<!doctype html>
+<html>
+  <head>
+
+    <meta charset="utf-8" />
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+        font-family: Times;
+        font-size: 16px;
+        overflow: hidden;
+      }
+
+      body {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        background: #012717; /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover,  #012717 0%, #143 100%); /* FF3.6+ */
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#012717), color-stop(100%,#143)); /* Chrome,Safari4+ */
+        background: -webkit-radial-gradient(center, ellipse cover,  #012717 0%,#143 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-radial-gradient(center, ellipse cover,  #012717 0%,#143 100%); /* Opera 12+ */
+        background: -ms-radial-gradient(center, ellipse cover,  #012717 0%,#143 100%); /* IE10+ */
+        background: radial-gradient(ellipse at center,  #012717 0%,#143 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#012717', endColorstr='#143',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        -webkit-perspective: 800px;
+        -moz-perspective: 800px;
+        -ms-perspective: 800px;
+        -o-perspective: 800px;
+        perspective: 800px;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+
+      #myBook {
+        left: 600px;
+        top: 50px;
+        -webkit-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        -moz-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        -ms-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        -o-transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        transform: rotate3d(-1.8, -1.0, 0.6, 20deg);
+        text-align: center;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: absolute;
+      }
+
+      #myBook .book > div:first-child {
+        -webkit-transform: rotateY(-150deg);
+        -moz-transform: rotateY(-150deg);
+        -ms-transform: rotateY(-150deg);
+        -o-transform: rotateY(-150deg);
+        transform: rotateY(-150deg);
+      }
+
+      .book, .book > div {
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: absolute;
+      }
+
+      .book > div {
+        -webkit-transition: 1s ease-in-out;
+        -moz-transition: 1s ease-in-out;
+        -ms-transition: 1s ease-in-out;
+        -o-transition: 1s ease-in-out;
+        transition: 1s ease-in-out;
+      }
+
+      /* Front of a page */
+      .book > div > div:first-child {
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+background: linear-gradient(135deg,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        width: 400px;
+        height: 600px;
+        position: absolute;
+        overflow: hidden;
+        -webkit-transform: translate3d(0px, 0px, 0.02px);
+        -moz-transform: translate3d(0px, 0px, 0.02px);
+        -ms-transform: translate3d(0px, 0px, 0.02px);
+        -o-transform: translate3d(0px, 0px, 0.02px);
+        transform: translate3d(0px, 0px, 0.02px);
+        padding: 30px;
+        padding-left: 40px;
+        padding-bottom: 80px;
+        border-left: 2px solid #000;
+      }
+
+      /* Back of a page */
+      .book > div > div:last-child {
+        background-color: white;
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(-45deg,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(-45deg,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+        background: linear-gradient(135deg,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        width: 400px;
+        height: 600px;
+        position: absolute;
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        overflow: hidden;
+        padding: 30px;
+        padding-right: 40px;
+        padding-bottom: 80px;
+        border-right: 2px solid #000;
+      }
+
+      /* covers */
+      .book > div:first-child > div:first-child, .book > div:last-child > div:last-child {
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(-45deg,  #8C9CCC 0%, #080f40 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#8C9CCC), color-stop(100%,#080f40)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(-45deg,  #8C9CCC 0%,#080f40 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(-45deg,  #8C9CCC 0%,#080f40 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(-45deg,  #8C9CCC 0%,#080f40 100%); /* IE10+ */
+        background: linear-gradient(135deg,  #8C9CCC 0%,#080f40 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8C9CCC', endColorstr='#080f40',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        color: #000;
+        border: 2px solid #000;
+        margin-left: -1px;
+        margin-top: -1px;
+      }
+
+      h1 {
+        margin-top: 200px;
+        font-family: Cochin, sans-serif;
+      }
+
+      .book-pages p {
+        text-align: left;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="myBook">
+      <div class="book">
+
+        <div>
+          <div>
+            <h1>A DESCENT INTO THE MAELSTRÖM</h1>
+          </div>
+          <div>
+            <h1>By Edgar Allan Poe</h1>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <h1>2012 Bogus HTML Hipster Publishing Inc.</h1>
+            <h2>Copy-pasted from <a href="http://www.gutenberg.org/ebooks/2148">Project Gutenberg</a></h2>
+          </div>
+          <div>
+            <p>This page intentionally left blank.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="book-pages">
+<h2>
+    A DESCENT INTO THE MAELSTRÖM.
+</h2>
+<p style="font-family:monospace;font-size:small;">
+  The ways of God in Nature, as in Providence, are not as our
+  ways;  nor are the models that we frame any way commensurate to the
+  vastness, profundity, and unsearchableness of His works, which have
+  a depth in them greater than the well of Democritus.
+<br><br>
+  Joseph Glanville.
+</p>
+<p>
+WE had now reached the summit of the loftiest crag. For some minutes the
+old man seemed too much exhausted to speak.
+</p>
+<p>
+"Not long ago," said he at length, "and I could have guided you on this
+route as well as the youngest of my sons; but, about three years past,
+there happened to me an event such as never happened to mortal man&mdash;or
+at least such as no man ever survived to tell of&mdash;and the six hours of
+deadly terror which I then endured have broken me up body and soul. You
+suppose me a <i>very</i> old man&mdash;but I am not. It took less than a single
+day to change these hairs from a jetty black to white, to weaken
+my limbs, and to unstring my nerves, so that I tremble at the least
+exertion, and am frightened at a shadow. Do you know I can scarcely look
+over this little cliff without getting giddy?"
+</p>
+</div>
+<div class="book-pages">
+<p>
+The "little cliff," upon whose edge he had so carelessly thrown himself
+down to rest that the weightier portion of his body hung over it, while
+he was only kept from falling by the tenure of his elbow on its extreme
+and slippery edge&mdash;this "little cliff" arose, a sheer unobstructed
+precipice of black shining rock, some fifteen or sixteen hundred feet
+from the world of crags beneath us. Nothing would have tempted me to
+within half a dozen yards of its brink. In truth so deeply was I excited
+by the perilous position of my companion, that I fell at full length
+upon the ground, clung to the shrubs around me, and dared not even
+glance upward at the sky&mdash;while I struggled in vain to divest myself of
+the idea that the very foundations of the mountain were in danger from
+the fury of the winds. It was long before I could reason myself into
+sufficient courage to sit up and look out into the distance.
+</p>
+<p>
+"You must get over these fancies," said the guide, "for I have brought
+you here that you might have the best possible view of the scene of that
+event I mentioned&mdash;and to tell you the whole story with the spot just
+under your eye."
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+"We are now," he continued, in that particularizing manner which
+distinguished him&mdash;"we are now close upon the Norwegian coast&mdash;in the
+sixty-eighth degree of latitude&mdash;in the great province of Nordland&mdash;and
+in the dreary district of Lofoden. The mountain upon whose top we sit is
+Helseggen, the Cloudy. Now raise yourself up a little higher&mdash;hold on to
+the grass if you feel giddy&mdash;so&mdash;and look out, beyond the belt of vapor
+beneath us, into the sea."
+</p>
+<p>
+I looked dizzily, and beheld a wide expanse of ocean, whose waters wore
+so inky a hue as to bring at once to my mind the Nubian geographer's
+account of the <i>Mare Tenebrarum</i>. A panorama more deplorably desolate no
+human imagination can conceive. To the right and left, as far as the eye
+could reach, there lay outstretched, like ramparts of the world, lines
+of horridly black and beetling cliff, whose character of gloom was but
+the more forcibly illustrated by the surf which reared high up against
+its white and ghastly crest, howling and shrieking forever. Just
+opposite the promontory upon whose apex we were placed, and at a
+distance of some five or six miles out at sea, there was visible
+a small, bleak-looking island; or, more properly, its position was
+discernible through the wilderness of surge in which it was enveloped.
+About two miles nearer the land, arose another of smaller size,
+hideously craggy and barren, and encompassed at various intervals by a
+cluster of dark rocks.
+</p>
+</div>
+<div class="book-pages">
+<p>
+The appearance of the ocean, in the space between the more distant
+island and the shore, had something very unusual about it. Although,
+at the time, so strong a gale was blowing landward that a brig in the
+remote offing lay to under a double-reefed trysail, and constantly
+plunged her whole hull out of sight, still there was here nothing like a
+regular swell, but only a short, quick, angry cross dashing of water in
+every direction&mdash;as well in the teeth of the wind as otherwise. Of foam
+there was little except in the immediate vicinity of the rocks.
+</p>
+<p>
+"The island in the distance," resumed the old man, "is called by
+the Norwegians Vurrgh. The one midway is Moskoe. That a mile to the
+northward is Ambaaren. Yonder are Islesen, Hotholm, Keildhelm, Suarven,
+and Buckholm. Farther off&mdash;between Moskoe and Vurrgh&mdash;are Otterholm,
+Flimen, Sandflesen, and Stockholm. These are the true names of the
+places&mdash;but why it has been thought necessary to name them at all, is
+more than either you or I can understand. Do you hear anything? Do you
+see any change in the water?"
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+We had now been about ten minutes upon the top of Helseggen, to which
+we had ascended from the interior of Lofoden, so that we had caught no
+glimpse of the sea until it had burst upon us from the summit. As the
+old man spoke, I became aware of a loud and gradually increasing sound,
+like the moaning of a vast herd of buffaloes upon an American prairie;
+and at the same moment I perceived that what seamen term the <i>chopping</i>
+character of the ocean beneath us, was rapidly changing into a current
+which set to the eastward. Even while I gazed, this current acquired
+a monstrous velocity. Each moment added to its speed&mdash;to its headlong
+impetuosity. In five minutes the whole sea, as far as Vurrgh, was lashed
+into ungovernable fury; but it was between Moskoe and the coast that the
+main uproar held its sway. Here the vast bed of the waters, seamed
+and scarred into a thousand conflicting channels, burst suddenly into
+phrensied convulsion&mdash;heaving, boiling, hissing&mdash;gyrating in gigantic
+and innumerable vortices, and all whirling and plunging on to the
+eastward with a rapidity which water never elsewhere assumes except in
+precipitous descents.
+</p>
+</div>
+<div class="book-pages">
+<p>
+In a few minutes more, there came over the scene another radical
+alteration. The general surface grew somewhat more smooth, and the
+whirlpools, one by one, disappeared, while prodigious streaks of foam
+became apparent where none had been seen before. These streaks,
+at length, spreading out to a great distance, and entering into
+combination, took unto themselves the gyratory motion of the
+subsided vortices, and seemed to form the germ of another more vast.
+Suddenly&mdash;very suddenly&mdash;this assumed a distinct and definite existence,
+in a circle of more than a mile in diameter. The edge of the whirl was
+represented by a broad belt of gleaming spray; but no particle of this
+slipped into the mouth of the terrific funnel, whose interior, as far
+as the eye could fathom it, was a smooth, shining, and jet-black wall of
+water, inclined to the horizon at an angle of some forty-five degrees,
+speeding dizzily round and round with a swaying and sweltering motion,
+and sending forth to the winds an appalling voice, half shriek, half
+roar, such as not even the mighty cataract of Niagara ever lifts up in
+its agony to Heaven.
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+The mountain trembled to its very base, and the rock rocked. I threw
+myself upon my face, and clung to the scant herbage in an excess of
+nervous agitation.
+</p>
+<p>
+"This," said I at length, to the old man&mdash;"this <i>can</i> be nothing else
+than the great whirlpool of the Maelström."
+</p>
+<p>
+"So it is sometimes termed," said he. "We Norwegians call it the
+Moskoe-ström, from the island of Moskoe in the midway."
+</p>
+<p>
+The ordinary accounts of this vortex had by no means prepared me
+for what I saw. That of Jonas Ramus, which is perhaps the most
+circumstantial of any, cannot impart the faintest conception either
+of the magnificence, or of the horror of the scene&mdash;or of the wild
+bewildering sense of <i>the novel</i> which confounds the beholder. I am not
+sure from what point of view the writer in question surveyed it, nor at
+what time; but it could neither have been from the summit of Helseggen,
+nor during a storm. There are some passages of his description,
+nevertheless, which may be quoted for their details, although their
+effect is exceedingly feeble in conveying an impression of the
+spectacle.
+</p>
+</div>
+<div class="book-pages">
+<p>
+"Between Lofoden and Moskoe," he says, "the depth of the water is
+between thirty-six and forty fathoms; but on the other side, toward Ver
+(Vurrgh) this depth decreases so as not to afford a convenient passage
+for a vessel, without the risk of splitting on the rocks, which happens
+even in the calmest weather. When it is flood, the stream runs up the
+country between Lofoden and Moskoe with a boisterous rapidity; but the
+roar of its impetuous ebb to the sea is scarce equalled by the loudest
+and most dreadful cataracts; the noise being heard several leagues off,
+and the vortices or pits are of such an extent and depth, that if a ship
+comes within its attraction, it is inevitably absorbed and carried down
+to the bottom, and there beat to pieces against the rocks; and when
+the water relaxes, the fragments thereof are thrown up again. But these
+intervals of tranquility are only at the turn of the ebb and flood,
+and in calm weather, and last but a quarter of an hour, its violence
+gradually returning. When the stream is most boisterous, and its fury
+heightened by a storm, it is dangerous to come within a Norway mile
+of it. Boats, yachts, and ships have been carried away by not guarding
+against it before they were within its reach. It likewise happens
+frequently, that whales come too near the stream, and are overpowered by
+its violence; and then it is impossible to describe their howlings and
+bellowings in their fruitless struggles to disengage themselves. A
+bear once, attempting to swim from Lofoden to Moskoe, was caught by the
+stream and borne down, while he roared terribly, so as to be heard on
+shore. Large stocks of firs and pine trees, after being absorbed by the
+current, rise again broken and torn to such a degree as if bristles grew
+upon them. This plainly shows the bottom to consist of craggy rocks,
+among which they are whirled to and fro. This stream is regulated by the
+flux and reflux of the sea&mdash;it being constantly high and low water every
+six hours. In the year 1645, early in the morning of Sexagesima Sunday,
+it raged with such noise and impetuosity that the very stones of the
+houses on the coast fell to the ground."
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+In regard to the depth of the water, I could not see how this could have
+been ascertained at all in the immediate vicinity of the vortex. The
+"forty fathoms" must have reference only to portions of the channel
+close upon the shore either of Moskoe or Lofoden. The depth in the
+centre of the Moskoe-ström must be immeasurably greater; and no better
+proof of this fact is necessary than can be obtained from even the
+sidelong glance into the abyss of the whirl which may be had from the
+highest crag of Helseggen. Looking down from this pinnacle upon the
+howling Phlegethon below, I could not help smiling at the simplicity
+with which the honest Jonas Ramus records, as a matter difficult of
+belief, the anecdotes of the whales and the bears; for it appeared to
+me, in fact, a self-evident thing, that the largest ship of the line in
+existence, coming within the influence of that deadly attraction, could
+resist it as little as a feather the hurricane, and must disappear
+bodily and at once.
+</p>
+</div>
+<div class="book-pages">
+<p>
+The attempts to account for the phenomenon&mdash;some of which, I remember,
+seemed to me sufficiently plausible in perusal&mdash;now wore a very
+different and unsatisfactory aspect. The idea generally received is that
+this, as well as three smaller vortices among the Ferroe islands, "have
+no other cause than the collision of waves rising and falling, at flux
+and reflux, against a ridge of rocks and shelves, which confines the
+water so that it precipitates itself like a cataract; and thus the
+higher the flood rises, the deeper must the fall be, and the natural
+result of all is a whirlpool or vortex, the prodigious suction of which
+is sufficiently known by lesser experiments."&mdash;These are the words of
+the Encyclopædia Britannica. Kircher and others imagine that in the
+centre of the channel of the Maelström is an abyss penetrating the
+globe, and issuing in some very remote part&mdash;the Gulf of Bothnia being
+somewhat decidedly named in one instance. This opinion, idle in itself,
+was the one to which, as I gazed, my imagination most readily assented;
+and, mentioning it to the guide, I was rather surprised to hear him say
+that, although it was the view almost universally entertained of the
+subject by the Norwegians, it nevertheless was not his own. As to the
+former notion he confessed his inability to comprehend it; and here I
+agreed with him&mdash;for, however conclusive on paper, it becomes altogether
+unintelligible, and even absurd, amid the thunder of the abyss.
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+"You have had a good look at the whirl now," said the old man, "and if
+you will creep round this crag, so as to get in its lee, and deaden
+the roar of the water, I will tell you a story that will convince you I
+ought to know something of the Moskoe-ström."
+</p>
+<p>
+I placed myself as desired, and he proceeded.
+</p>
+<p>
+"Myself and my two brothers once owned a schooner-rigged smack of about
+seventy tons burthen, with which we were in the habit of fishing among
+the islands beyond Moskoe, nearly to Vurrgh. In all violent eddies at
+sea there is good fishing, at proper opportunities, if one has only the
+courage to attempt it; but among the whole of the Lofoden coastmen, we
+three were the only ones who made a regular business of going out to the
+islands, as I tell you. The usual grounds are a great way lower down to
+the southward. There fish can be got at all hours, without much risk,
+and therefore these places are preferred. The choice spots over here
+among the rocks, however, not only yield the finest variety, but in far
+greater abundance; so that we often got in a single day, what the more
+timid of the craft could not scrape together in a week. In fact, we made
+it a matter of desperate speculation&mdash;the risk of life standing instead
+of labor, and courage answering for capital.
+</p>
+</div>
+<div class="book-pages">
+<p>
+"We kept the smack in a cove about five miles higher up the coast than
+this; and it was our practice, in fine weather, to take advantage of
+the fifteen minutes' slack to push across the main channel of the
+Moskoe-ström, far above the pool, and then drop down upon anchorage
+somewhere near Otterholm, or Sandflesen, where the eddies are not so
+violent as elsewhere. Here we used to remain until nearly time for
+slack-water again, when we weighed and made for home. We never set
+out upon this expedition without a steady side wind for going and
+coming&mdash;one that we felt sure would not fail us before our return&mdash;and
+we seldom made a mis-calculation upon this point. Twice, during six
+years, we were forced to stay all night at anchor on account of a dead
+calm, which is a rare thing indeed just about here; and once we had to
+remain on the grounds nearly a week, starving to death, owing to a
+gale which blew up shortly after our arrival, and made the channel too
+boisterous to be thought of. Upon this occasion we should have been
+driven out to sea in spite of everything, (for the whirlpools threw us
+round and round so violently, that, at length, we fouled our anchor
+and dragged it) if it had not been that we drifted into one of the
+innumerable cross currents&mdash;here to-day and gone to-morrow&mdash;which drove
+us under the lee of Flimen, where, by good luck, we brought up.
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+"I could not tell you the twentieth part of the difficulties we
+encountered 'on the grounds'&mdash;it is a bad spot to be in, even in
+good weather&mdash;but we made shift always to run the gauntlet of the
+Moskoe-ström itself without accident; although at times my heart has
+been in my mouth when we happened to be a minute or so behind or before
+the slack. The wind sometimes was not as strong as we thought it at
+starting, and then we made rather less way than we could wish, while
+the current rendered the smack unmanageable. My eldest brother had a son
+eighteen years old, and I had two stout boys of my own. These would have
+been of great assistance at such times, in using the sweeps, as well as
+afterward in fishing&mdash;but, somehow, although we ran the risk ourselves,
+we had not the heart to let the young ones get into the danger&mdash;for,
+after all is said and done, it <i>was</i> a horrible danger, and that is the
+truth.
+</p>
+</div>
+<div class="book-pages">
+<p>
+"It is now within a few days of three years since what I am going to
+tell you occurred. It was on the tenth day of July, 18-, a day which the
+people of this part of the world will never forget&mdash;for it was one
+in which blew the most terrible hurricane that ever came out of
+the heavens. And yet all the morning, and indeed until late in the
+afternoon, there was a gentle and steady breeze from the south-west,
+while the sun shone brightly, so that the oldest seaman among us could
+not have foreseen what was to follow.
+</p>
+<p>
+"The three of us&mdash;my two brothers and myself&mdash;had crossed over to the
+islands about two o'clock P. M., and had soon nearly loaded the smack
+with fine fish, which, we all remarked, were more plenty that day
+than we had ever known them. It was just seven, <i>by my watch</i>, when we
+weighed and started for home, so as to make the worst of the Ström at
+slack water, which we knew would be at eight.
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+"We set out with a fresh wind on our starboard quarter, and for some
+time spanked along at a great rate, never dreaming of danger, for indeed
+we saw not the slightest reason to apprehend it. All at once we
+were taken aback by a breeze from over Helseggen. This was most
+unusual&mdash;something that had never happened to us before&mdash;and I began to
+feel a little uneasy, without exactly knowing why. We put the boat on
+the wind, but could make no headway at all for the eddies, and I was
+upon the point of proposing to return to the anchorage, when, looking
+astern, we saw the whole horizon covered with a singular copper-colored
+cloud that rose with the most amazing velocity.
+</p>
+<p>
+"In the meantime the breeze that had headed us off fell away, and we
+were dead becalmed, drifting about in every direction. This state of
+things, however, did not last long enough to give us time to think about
+it. In less than a minute the storm was upon us&mdash;in less than two the
+sky was entirely overcast&mdash;and what with this and the driving spray, it
+became suddenly so dark that we could not see each other in the smack.
+</p>
+</div>
+<div class="book-pages">
+<p>
+"Such a hurricane as then blew it is folly to attempt describing. The
+oldest seaman in Norway never experienced any thing like it. We had let
+our sails go by the run before it cleverly took us; but, at the first
+puff, both our masts went by the board as if they had been sawed
+off&mdash;the mainmast taking with it my youngest brother, who had lashed
+himself to it for safety.
+</p>
+<p>
+"Our boat was the lightest feather of a thing that ever sat upon water.
+It had a complete flush deck, with only a small hatch near the bow, and
+this hatch it had always been our custom to batten down when about to
+cross the Ström, by way of precaution against the chopping seas. But for
+this circumstance we should have foundered at once&mdash;for we lay entirely
+buried for some moments. How my elder brother escaped destruction I
+cannot say, for I never had an opportunity of ascertaining. For my part,
+as soon as I had let the foresail run, I threw myself flat on deck,
+with my feet against the narrow gunwale of the bow, and with my hands
+grasping a ring-bolt near the foot of the fore-mast. It was mere
+instinct that prompted me to do this&mdash;which was undoubtedly the very
+best thing I could have done&mdash;for I was too much flurried to think.
+</p>
+</div>
+</div>
+<div>
+<div class="book-pages">
+<p>
+"For some moments we were completely deluged, as I say, and all this
+time I held my breath, and clung to the bolt. When I could stand it no
+longer I raised myself upon my knees, still keeping hold with my hands,
+and thus got my head clear. Presently our little boat gave herself
+a shake, just as a dog does in coming out of the water, and thus rid
+herself, in some measure, of the seas. I was now trying to get the
+better of the stupor that had come over me, and to collect my senses so
+as to see what was to be done, when I felt somebody grasp my arm. It was
+my elder brother, and my heart leaped for joy, for I had made sure
+that he was overboard&mdash;but the next moment all this joy was turned into
+horror&mdash;for he put his mouth close to my ear, and screamed out the word
+'<i>Moskoe-ström!</i>'
+</p>
+<p>
+"No one ever will know what my feelings were at that moment. I shook
+from head to foot as if I had had the most violent fit of the ague. I
+knew what he meant by that one word well enough&mdash;I knew what he wished
+to make me understand. With the wind that now drove us on, we were bound
+for the whirl of the Ström, and nothing could save us!
+</p>
+</div>
+<div class="book-pages">
+<h1>To be continued...</h1>
+</div>
+</div>
+
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="book.js">
+    </script>
+
+  </body>
+</html>
